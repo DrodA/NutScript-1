@@ -17,6 +17,7 @@ function nut.currency.get(amount)
 	end
 end
 
+local defaultCurModel = "models/props_lab/box01a.mdl"
 function nut.currency.spawn(pos, amount, angle)
 	if (!pos) then
 		print("[Nutscript] Can't create currency entity: Invalid Position")
@@ -28,6 +29,7 @@ function nut.currency.spawn(pos, amount, angle)
 	money:SetPos(pos)
 	-- double check for negative.
 	money:setNetVar("amount", math.Round(math.abs(amount)))
+	money:SetModel(SCHEMA.currencyModel != "" and SCHEMA.currencyModel or defaultCurModel)
 	money:SetAngles(angle or Angle(0, 0, 0))
 	money:Spawn()
 	money:Activate()
